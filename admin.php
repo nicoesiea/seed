@@ -52,7 +52,7 @@
 
 			$connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
 
-			$sql = "SELECT * FROM `eloUser` WHERE `id` = '".$id."' AND `token` = '".$token."' AND `timestampLastConnection` > (NOW() - INTERVAL 60 MINUTE);";
+			$sql = "SELECT * FROM `users` WHERE `id` = '".$id."' AND `token` = '".$token."' AND `timestampLastConnection` > (NOW() - INTERVAL 60 MINUTE);";
 			$query_admin = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 			$admin = array();
 		    while($row =mysqli_fetch_assoc($query_admin))
@@ -62,11 +62,11 @@
 	        if ($token == "" || $id == "" || $admin["token"] != $token){
 	    ?>
 	            <div class="codrops-top clearfix">
-					<span class="right"><a class="codrops-icon codrops-icon-drop" href="http://www.kaiogaming.fr/elokaio"><span>Retour</span></a></span>
+					<span class="right"><a class="codrops-icon codrops-icon-drop" href="YOURHOME PAGE"><span>Back</span></a></span>
 				</div>
 				<header class="codrops-header">
 					<img width="100px" src="./fonts/icomoon/logo.png" />
-					<h1>Vous n'avez pas le droit d'accéder à cette page</h1>
+					<h1>YOU CAN NOT ACCESS THIS PAGE</h1>
 				</header>
 	    <?php
 	    }
@@ -85,11 +85,11 @@
 								</b>
 							</span>
 						</a> 
-						<a href="#addPlayer" title="Ajouter un joueur">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un joueur 
+						<a href="#addPlayer" title="add user">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> add user 
 						</a>
-						<a href="#addRencontre" title="Ajouter un tournoi">
-							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter un tournoi 
+						<a href="#addRencontre" title="add event">
+							<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> add event 
 						</a>
 					</span>
 				</div>
@@ -110,121 +110,7 @@
 				    	function cancelMatch(matchId, pseudoA, action, pseudoB){
 							$(document).ready(function(){
 
-//////////////////////// DUPLICATION PURE ET SIMPLE ///////////////////////////////
-
-							function getUsers(){
-								if (users != null){
-									removeAllUsers();
-									userA = null;
-									userB = null;
-									setUserA(0);
-									setUserB(0);
-								}
-								$.get("./getUserOrderByPseudo.php")
-								.done(( data )  => {
-									users = data;
-									var $selectUserA = $('#userA');
-									var $selectUserB = $('#userB');
-									$.each(users,function(key, value) 
-									{
-										let option = getOption(value);
-										$selectUserA.append(option);
-									    $selectUserB.append(option);
-									});
-								});
-							};
-
-							function removeAllUsers($selectUserA, $selectUserB){
-							    $('#userA').children('option:not(:first)').remove();
-							    $('#userB').children('option:not(:first)').remove();
-						 	};
-
-						 	function getOption(user){
-						 		return '<option value=' + user.id + '>' + user.pseudo + " - " + user.elo + '</option>';
-						 	}
-
-						 	function searchUser(id){
-						 		let user = _.find(users,(utilisateur) => {
-						 			return utilisateur.id === id;
-						 		});
-						 		return user;
-						 	}
-
-						 	function setUserA(id){
-						 		if (id != "0")
-						 		{
-							 		let user = searchUser(id);
-							 		userA = user;
-							 		var theString = user.pseudo;
-								  	var varTitle = $('<textarea />').html(theString).text();
-								  	$( "#selectedUserA" ).text( varTitle );
-						 		}
-							 	else {
-							 		$( "#selectedUserA" ).text( "?");
-							 	}
-						 	}
-						 	function setUserB(id){
-						 		if (id != "0")
-						 		{
-						 			let user = searchUser(id);
-							 		userB = user;
-							 		var theString = user.pseudo;
-								  	var varTitle = $('<textarea />').html(theString).text();
-								  	$( "#selectedUserB" ).text( varTitle );
-							 	}
-							 	else {
-							 		$( "#selectedUserB" ).text( "?");
-							 	}
-						 	}
-							function removeAllLines(){
-								$('#tableBody').children('tr').remove();
-							}
-
-							function getHistory(){
-								removeAllLines();
-								$.post("./getHistory.php", {
-									id: '<?php echo $admin["id"]?>',
-									token: '<?php echo $admin["token"] ?>',
-								})
-								.done(( data ) => {
-									history = data;
-									var $tableBody = $('#tableBody');
-									$.each(history,function(key, value) 
-									{
-										let line = getLine(value);
-										$tableBody.append(line);
-									});
-								});
-							}
-
-							function removeAllLines(){
-								$('#tableBody').children('tr').remove();
-							}
-
-							function getLine(line){
-								return `
-									<tr class="limited" match-id="`+ line.id +`">
-										<th scope="row">`+ line.date +`</th>
-										<td style="font-size: 1.5em;" id-a="`+ line.idA +`">
-											`+ line.pseudoA +` (`+ line.previousEloA +` -> `+ line.newEloA +`)
-										</td>
-										<td style="font-size: 1.5em;">
-											`+ line.action +`
-										</td>
-										<td style="font-size: 1.5em;" id-b="`+ line.idB +`">`
-											+ line.pseudoB +` (`+ line.previousEloB +` -> `+ line.newEloB +`)
-										</td>
-										<td style="font-size: 1.5em;">
-											<button type="button" class="btn btn-default" 
-	onclick="cancelMatch(`+ line.id +`, '`+ line.pseudoA +`', '`+ line.action +`' , '`+ line.pseudoB +`');">
-											  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-											</button>
-										</td>
-									</tr>`;
-							}
-///////////////////////////////////////////////////////////////////
-
-					            $('<div></div>').appendTo('body')
+								$('<div></div>').appendTo('body')
 								.html('<div><h6>Supprimer le match: '+pseudoA+' '+action+' '+pseudoB+' ?</h6></div>')
 								.dialog(
 								{
@@ -847,7 +733,7 @@
 					</table>
 				</section>
 				<section class="related" id="addPlayer">
-					<h1>Ajouter un joueur (admin)</h1>
+					<h1>add user (admin)</h1>
 					<div class="form-group">
 						<label for="addUser_nom" class="col-sm-2 control-label">Nom</label>
 						<div class="col-sm-10">
@@ -894,7 +780,7 @@
 					</button>
 				</section>
 				<section id="addRencontre">
-					<h1>Ajouter un tournoi</h1>
+					<h1>add event</h1>
 					<div class="form-group">
 						<label for="addTournoi_date" class="col-sm-2 control-label">Date</label>
 						<div class="col-sm-10">

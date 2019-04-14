@@ -11,7 +11,7 @@ header('Content-Type: application/json');
 	    	$connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
 
 	    	//Controle joueurA
-			$sql = "SELECT * FROM `eloUser` WHERE id = '".$id."' AND token = '".$token."';";
+			$sql = "SELECT * FROM `users` WHERE id = '".$id."' AND token = '".$token."';";
 			$query_user = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 			$user = null;
 			while($row =mysqli_fetch_assoc($query_user))
@@ -19,13 +19,13 @@ header('Content-Type: application/json');
 		        $user = $row;
 		    }
 		    if($user["id"] == $id){
-		    	$sql = "UPDATE `eloUser` SET `token` = 'deco' WHERE `eloUser`.`id` = ".$id.";";
+		    	$sql = "UPDATE `users` SET `token` = 'deco' WHERE `users`.`id` = ".$id.";";
 		    	if ($connection->query($sql) === TRUE) {
-		    		$res = '{"url": "http://www.kaiogaming.fr/elokaio"}';
+		    		$res = '{"url": "YOUR CONNECTION PAGE"}';
 		    	}
 		    }
 		    else {
-		    	$res = '{"message": "Identifiants invalides"}';
+		    	$res = '{"message": "wrong authentification"}';
 		    }
 
 		  	echo $res;
@@ -34,6 +34,6 @@ header('Content-Type: application/json');
 
     }
     else {
-        echo "PROBLEME 1 : manque d'informations disponibles pour chercher un joueur";
+        echo "PROBLEME 1 : missing parameter to use this service";
     }
 ?>

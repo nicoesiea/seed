@@ -12,7 +12,7 @@
 
 
             //fetch table rows from mysql db
-            $sql = "select * from `eloUser` WHERE `eloUser`.`id` = '".$id."'";
+            $sql = "select * from `users` WHERE `eloUser`.`id` = '".$id."'";
             $query_user = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 
             //create an array
