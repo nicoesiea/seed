@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 			$token = $_POST['token'];
 
         	//On se connecte d'abord à MySQL :
-	    	$connection = mysqli_connect("kaiogamionkgdb.mysql.db","kaiogamionkgdb","Eaqw2zsx","kaiogamionkgdb") or die("Error " . mysqli_error($connection));
+	    	$connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
 
 	    	//Controle joueurA
 			$sql = "SELECT * FROM `eloUser` WHERE id = '".$id."' AND token = '".$token."';";

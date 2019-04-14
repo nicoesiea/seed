@@ -24,7 +24,7 @@
 
 
         	//On se connecte d'abord à MySQL :
-	    	$connection = mysqli_connect("kaiogamionkgdb.mysql.db","kaiogamionkgdb","Eaqw2zsx","kaiogamionkgdb") or die("Error " . mysqli_error($connection));
+	    	$connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
 
 			$sql = "SELECT * FROM `eloUser` WHERE `id` = '".$id."' AND `token` = '".$token."' AND `timestampLastConnection` > (NOW() - INTERVAL 60 MINUTE);";
 			$query_admin = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));

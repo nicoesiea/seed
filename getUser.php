@@ -5,7 +5,7 @@
 
         $id = $_POST['id']; 
 
-        $connection = mysqli_connect("kaiogamionkgdb.mysql.db","kaiogamionkgdb","Eaqw2zsx","kaiogamionkgdb") or die("Error " . mysqli_error($connection));
+        $connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
         mysqli_set_charset($connexion, 'utf8_general_ci');
         
        

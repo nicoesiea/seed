@@ -4,10 +4,10 @@
 		<meta charset="UTF-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1"> 
-		<title>Elo KaioGaming</title>
-		<meta name="description" content="ELO classement KaioGaming" />
-		<meta name="keywords" content="kaio, kaiogaming, elo, score, classement, e-sport" />
-		<meta name="author" content="KaioGaming" />
+		<title>HELLO TEST</title>
+		<meta name="description" content="Sample page" />
+		<meta name="keywords" content="Exemple" />
+		<meta name="author" content="nicoesiea" />
 		<link rel="shortcut icon" href="./fonts/icomoon/cropped-favicon64-32x32.png">
 		<link rel="stylesheet" type="text/css" href="css/normalize.css" />
 		<link rel="stylesheet" type="text/css" href="css/demo.css" />
@@ -256,12 +256,12 @@ setInterval(function(){
 						<span>connexion</span>
 					</a>
 				</span>
-				<a class="codrops-icon codrops-icon-prev" href="http://www.kaiogaming.fr"><span>www.kaiogaming.fr</span></a>
+				<a class="codrops-icon codrops-icon-prev" href="YOUR OWN PAGE"><span>NAME OR URL TO YOUR SITE</span></a>
 			</div>
 			<header class="codrops-header">
 				<img width="100px" src="./fonts/icomoon/logo.png" />
-				<h1>Kaio Elo</h1>
-				<h2>Classement général - KaioKen Championship</h2>
+				<h1>TITLE</h1>
+				<h2>SubTitle</h2>
 				<br/>
 				<p style="font-size: 1.5em;">Actualiser après <b><span id="refreshTime"></span></b></p>
 				<!--div class="slider"><div id="slider"></div></div -->
@@ -275,15 +275,15 @@ setInterval(function(){
 			</section>
 			<section class="related">
 				<p>
-					Voir aussi:
+					See also:
 				</p>
-				<a target="_blank" href="http://kaiogaming.fr/index.php/category/evenements/">
-					<img width="100px" src="http://kaiogaming.fr/wp-content/uploads/2017/07/FIFA-595x445.png" />
-					<h3>Tournois Fifa</h3>
+				<a target="_blank" href="yopyopyop/">
+					<img width="100px" src="yipyipyipyip" />
+					<h3>Sample one</h3>
 				</a>
-				<a target="_blank" href="http://kaiogaming.fr/index.php/category/evenements/">
-					<img width="100px" src="http://kaiogaming.fr/wp-content/uploads/2016/12/Goku-bye.png" />
-					<h3>Goku day</h3>
+				<a target="_blank" href="yopyopyop/">
+					<img width="100px" src="yipyipyipyip" />
+					<h3>Sample too</h3>
 				</a>
 			</section>
 		</div>
