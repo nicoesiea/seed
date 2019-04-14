@@ -11,7 +11,7 @@ header('Content-Type: application/json');
         	//On se connecte d'abord à MySQL :
 	    	$connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
 
-			$sql = "SELECT * FROM `eloUser` WHERE (pseudo like '".htmlentities($pseudo)."' OR email like '".htmlentities($pseudo)."') AND password = '".htmlentities($password)."' AND isAdmin = '1';";
+			$sql = "THE QUERY YOU CANT: SELECT * FROM `user` WHERE (pseudo like '".htmlentities($pseudo)."' OR email like '".htmlentities($pseudo)."') AND password = '".htmlentities($password)."';";
 			$query_user = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
 			$user = null;
 			while($row =mysqli_fetch_assoc($query_user))
