@@ -9,7 +9,7 @@ header('Content-Type: application/json');
 			$res = "";
 
         	//On se connecte d'abord à MySQL :
-	    	$connection = mysqli_connect("kaiogamionkgdb.mysql.db","kaiogamionkgdb","Eaqw2zsx","kaiogamionkgdb") or die("Error " . mysqli_error($connection));
+	    	$connection = mysqli_connect("HOSTNAME_DB","USERBANE_DB","PASSWORD_DB","SCHEMA_DB") or die("Error " . mysqli_error($connection));
 
 			$sql = "SELECT * FROM `eloUser` WHERE (pseudo like '".htmlentities($pseudo)."' OR email like '".htmlentities($pseudo)."') AND password = '".htmlentities($password)."' AND isAdmin = '1';";
 			$query_user = mysqli_query($connection, $sql) or die("Error in Selecting " . mysqli_error($connection));
@@ -28,13 +28,13 @@ header('Content-Type: application/json');
 				//2017-12-20 17:55:59
 		    	$sql = "UPDATE `eloUser` SET `token` = '".$newToken."', `timestampLastConnection` = '".$timestampLastConnection."' WHERE `eloUser`.`id` = ".$user["id"].";";
 	    		if ($connection->query($sql) === TRUE) {
-	    			echo '{"url": "http://www.kaiogaming.fr/elokaio/admin", "token": "'.$newToken.'", "id": "'.$user["id"].'"}';
+	    			echo '{"url": "YOUR OWN WEB SITE", "token": "'.$newToken.'", "id": "'.$user["id"].'"}';
 	    		}
 		    	
 		    }
 		    else {
 		    	http_response_code(500);
-		    	echo '{"message": "Identifiants invalides",  "sql": "'.$sql.'"}';
+		    	echo '{"message": "wrong authentication",  "sql": "'.$sql.'"}';
 
 		    }
 
@@ -45,6 +45,6 @@ header('Content-Type: application/json');
     }
     else {
     	http_response_code(500);
-        echo '{"message": "manque de parametres disponibles pour chercher un joueur"}';
+        echo '{"message": "Missing argument to call this endpoint"}';
     }
 ?>
